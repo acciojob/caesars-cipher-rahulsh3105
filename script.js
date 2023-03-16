@@ -1,21 +1,53 @@
-function rot13(str) {
-  // create an empty array to store the decoded characters
-  let decoded = [];
-  // loop through each character in the string
-  for (let i = 0; i < str.length; i++) {
-    // get the character code for the current character
-    let charCode = str.charCodeAt(i);
-    // check if the character is a letter
-    if (charCode >= 65 && charCode <= 90) {
-      // apply the ROT13 transformation by adding 13 and wrapping around if needed
-      charCode = ((charCode - 65 + 13) % 26) + 65;
+var lookup = {
+  A: "N",
+  B: "O",
+  C: "P",
+  D: "Q",
+  E: "R",
+  F: "S",
+  G: "T",
+  H: "U",
+  I: "V",
+  J: "W",
+  K: "X",
+  L: "Y",
+  M: "Z",
+  N: "A",
+  O: "B",
+  P: "C",
+  Q: "D",
+  R: "E",
+  S: "F",
+  T: "G",
+  U: "H",
+  V: "I",
+  W: "J",
+  X: "K",
+  Y: "L",
+  Z: "M",
+  "?": "?",
+  ",": ",",
+};
+
+function rot13(encodedStr) {
+  var words = encodedStr.split(" "); // String to Array
+  let decodedArr = []; // Your Result goes here
+  // Only change code below this line
+  for (let i = 0; i < words.length; i++) {
+    const word = words[i];
+    let decoded_word = "";
+    for (let j = 0; j < word.length; j++) {
+      var char = word.charAt(j);
+      var decoded_char = lookup[char];
+      decoded_word += decoded_char;
     }
-    // add the decoded character to the array
-    decoded.push(String.fromCharCode(charCode));
+    decodedArr.push(decoded_word);
   }
-  // join the array into a string and return it
-  return decoded.join("");
+  return decodedArr.join(" ");
 }
 
-// example usage
-console.log(rot13("EBG13 rknzcyr.")); // output: ROT13 example.
+// You can test your code by running the above function and printing it to console by pressing the run button at the top. To run it with input 36, uncomment the following line
+
+// console.log(rot13("SERR YBIR? NPPVBWBO"));
+
+module.exports = rot13;
