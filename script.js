@@ -1,7 +1,11 @@
 function rot13(str) {
-  var input = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-  var output = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
-  var index = x => input.indexOf(x);
-  var translate = x => index(x) > -1 ? output[index(x)] : x;
-  return str.split('').map(translate).join('');
+  let result = "";
+  for (let i = 0; i < str.length; i++) {
+    let charCode = str.charCodeAt(i);
+    if (charCode >= 65 && charCode <= 90) {
+      charCode = ((charCode - 65 + 13) % 26) + 65;
+    }
+    result += String.fromCharCode(charCode);
+  }
+  return result;
 }
